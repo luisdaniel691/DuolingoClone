@@ -17,33 +17,35 @@ class PobladorLecciones {
     final listaEjercicios = [
       {
         "tipo": "seleccion",
-        "pregunta": "¿Cómo se dice 'Hola'?",
-        "opciones": ["Hello", "Good bye", "Milk"],
-        "respuesta_correcta": "Hello"
+        "pregunta": "Hello", // Inglés arriba (TTS lee esto)
+        "opciones": ["Hola", "Adiós", "Leche"], // Español abajo
+        "respuesta_correcta": "Hola"
       },
       {
         "tipo": "seleccion",
-        "pregunta": "¿Cómo se dice 'Gato'?",
-        "opciones": ["Dog", "Cat", "Water"],
-        "respuesta_correcta": "Cat"
+        "pregunta": "Cat",
+        "opciones": ["Perro", "Gato", "Agua"],
+        "respuesta_correcta": "Gato"
       },
       {
         "tipo": "seleccion",
-        "pregunta": "El hombre",
-        "opciones": ["The woman", "The man", "The boy"],
-        "respuesta_correcta": "The man"
+        "pregunta": "The man",
+        "opciones": ["La mujer", "El hombre", "El niño"],
+        "respuesta_correcta": "El hombre"
       },
       {
         "tipo": "seleccion",
-        "pregunta": "¿Qué es esto? (Agua)",
-        "opciones": ["Water", "Bread", "Apple"],
-        "respuesta_correcta": "Water"
+        "pregunta": "Water",
+        "imagen_url": "https://firebasestorage.googleapis.com/v0/b/duolingoclone-2bcaa.firebasestorage.app/o/ejercicios%2Fbotella.png?alt=media&token=8920ca1d-ea00-48e8-8200-002416a76b12",
+        "opciones": ["Agua", "Pan", "Manzana"],
+        "respuesta_correcta": "Agua"
       },
       {
-        "tipo": "seleccion",
-        "pregunta": "Traduce: 'Mujer'",
-        "opciones": ["Man", "Woman", "She"],
-        "respuesta_correcta": "Woman"
+        "tipo": "completar",
+        "pregunta": "Completa la oración", // Instrucción visual
+        "oracion_incompleta": "I ___ water", // TTS lee esto
+        "opciones": ["eat", "drink", "sleep"], 
+        "respuesta_correcta": "drink"
       },
       {
         "tipo": "seleccion",
@@ -52,16 +54,22 @@ class PobladorLecciones {
         "respuesta_correcta": "Yo como pan"
       },
       {
-        "tipo": "seleccion",
-        "pregunta": "¿Cómo se dice 'Perro'?",
-        "opciones": ["Cat", "Horse", "Dog"],
-        "respuesta_correcta": "Dog"
+        "tipo": "parejas",
+        "pregunta": "Toca los pares",
+        "pares": {
+          "Hello": "Hola",
+          "Cat": "Gato",
+          "Dog": "Perro",
+          "Water": "Agua"
+        },
+        "opciones": [], 
+        "respuesta_correcta": "completado" // esto se manda al BLoC al terminar
       },
       {
         "tipo": "seleccion",
-        "pregunta": "Última: Traduce 'Adiós'",
-        "opciones": ["Hello", "Good bye", "Thanks"],
-        "respuesta_correcta": "Good bye"
+        "pregunta": "Good bye",
+        "opciones": ["Hola", "Adiós", "Gracias"],
+        "respuesta_correcta": "Adiós"
       },
     ];
 

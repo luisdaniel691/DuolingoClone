@@ -29,24 +29,35 @@ class ModeloLeccion {
 
 class ModeloEjercicio {
   final String pregunta;
-  final String tipo; // seleccion, etc.
+  final String tipo; // seleccion,etc
   final List<String> opciones;
   final String respuestaCorrecta;
+  
+  final String? oracionIncompleta; 
+    final Map<String, String>? pares; 
+  final String? imagenUrl;
 
   ModeloEjercicio({
     required this.pregunta,
     required this.tipo,
     required this.opciones,
     required this.respuestaCorrecta,
+    this.oracionIncompleta,
+    this.pares,
+    this.imagenUrl,
   });
 
   factory ModeloEjercicio.fromMap(Map<String, dynamic> map) {
     return ModeloEjercicio(
       pregunta: map['pregunta'] ?? '',
       tipo: map['tipo'] ?? 'seleccion',
-      // Convertimos dynamic list a String list de forma segura
       opciones: List<String>.from(map['opciones'] ?? []),
       respuestaCorrecta: map['respuesta_correcta'] ?? '',
+      // Extraemos la oración si existe
+      oracionIncompleta: map['oracion_incompleta'],
+      // Convertimos el mapa de Firebase a un Map<String, String> de Dart de forma segura
+      pares: map['pares'] != null ? Map<String, String>.from(map['pares']) : null,
+      imagenUrl: map['imagen_url'],
     );
   }
 }

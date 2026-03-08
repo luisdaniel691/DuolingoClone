@@ -5,7 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'presentation/auth/pantalla_registro.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'data/servicios/poblador_lecciones.dart';
+//import 'data/servicios/poblador_lecciones.dart';
+//import 'data/servicios/poblador_grande.dart';
 
 
 void main() async {
@@ -19,6 +20,7 @@ void main() async {
   
   //debo recordar que solo debo ejecutarla cuando vaya a poblar lecciones
   //await PobladorLecciones().subirLeccionDePrueba();
+  //await PobladorMasivo().construirCursoCompleto();
 
   runApp(const DuolingoCloneApp());
 }
