@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import '../../data/repositories/repositorio_autenticacion.dart';
 import '../main_wrapper.dart'; 
 
+
+import 'package:lottie/lottie.dart';
+
 class PantallaRegistro extends StatefulWidget {
   const PantallaRegistro({super.key});
 
@@ -56,100 +59,113 @@ class _PantallaRegistroState extends State<PantallaRegistro> {
     }
   }
 
-  @override
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         // El titulo cambia segun el modo
         title: Text(_esRegistro ? "Crear Perfil" : "Iniciar Sesión"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              _esRegistro ? "¡Empieza tu racha!" : "¡Bienvenido de vuelta!",
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 30),
-            
-            TextField(
-              controller: _correoController,
-              decoration: const InputDecoration(
-                labelText: "Correo electrónico",
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.email),
-              ),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            const SizedBox(height: 20),
-            
-            TextField(
-              controller: _passController,
-              decoration: const InputDecoration(
-                labelText: "Contraseña",
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(Icons.lock),
-              ),
-              obscureText: true,
-            ),
-            
-            if (_mensajeError != null) ...[
-              const SizedBox(height: 10),
-              Text(
-                _mensajeError!,
-                style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-            ],
+      body: Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                
+                Lottie.asset(
+                  'assets/animaciones/hola.json',
+                  width: 200, 
+                  height: 200,
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(height: 20),
 
-            const SizedBox(height: 30),
-            
-            // BOTON PRINCIPAL (Verde)
-            SizedBox(
-              width: double.infinity,
-              height: 50,
-              child: ElevatedButton(
-                onPressed: _cargando ? null : _autenticarUsuario,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF58CC02),
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
+                Text(
+                  _esRegistro ? "¡Empieza tu racha!" : "¡Bienvenido de vuelta!",
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 30),
+                
+                TextField(
+                  controller: _correoController,
+                  decoration: const InputDecoration(
+                    labelText: "Correo electrónico",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.email),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(height: 20),
+                
+                TextField(
+                  controller: _passController,
+                  decoration: const InputDecoration(
+                    labelText: "Contraseña",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.lock),
+                  ),
+                  obscureText: true,
+                ),
+                
+                if (_mensajeError != null) ...[
+                  const SizedBox(height: 10),
+                  Text(
+                    _mensajeError!,
+                    style: const TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+
+                const SizedBox(height: 30),
+                
+                // BOTON PRINCIPAL (Verde)
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: _cargando ? null : _autenticarUsuario,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF58CC02),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                    ),
+                    child: _cargando 
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : Text(
+                          _esRegistro ? "CREAR CUENTA" : "ENTRAR", // Texto dinamico
+                          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                        ),
                   ),
                 ),
-                child: _cargando 
-                  ? const CircularProgressIndicator(color: Colors.white)
-                  : Text(
-                      _esRegistro ? "CREAR CUENTA" : "ENTRAR", // Texto dinamico
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
-                    ),
-              ),
-            ),
-            
-            const SizedBox(height: 20),
+                
+                const SizedBox(height: 20),
 
-            // BOTON PARA CAMBIAR DE MODO
-            TextButton(
-              onPressed: () {
-                setState(() {
-                  _esRegistro = !_esRegistro; // Invertimos el valor (true a false)
-                  _mensajeError = null; // Limpiamos errores viejos
-                });
-              },
-              child: Text(
-                _esRegistro 
-                  ? "¿Ya tienes cuenta? INICIA SESIÓN" 
-                  : "¿Nuevo aquí? CREAR CUENTA",
-                style: const TextStyle(
-                  color: Colors.blue, 
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16
+                // BOTON PARA CAMBIAR DE MODO
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _esRegistro = !_esRegistro; // Invertimos el valor (true a false)
+                      _mensajeError = null; // Limpiamos errores viejos
+                    });
+                  },
+                  child: Text(
+                    _esRegistro 
+                      ? "¿Ya tienes cuenta? INICIA SESIÓN" 
+                      : "¿Nuevo aquí? CREAR CUENTA",
+                    style: const TextStyle(
+                      color: Colors.blue, 
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

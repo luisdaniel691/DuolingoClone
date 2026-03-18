@@ -12,7 +12,7 @@ class MainWrapper extends StatefulWidget {
 class _MainWrapperState extends State<MainWrapper> {
   int _currentIndex = 0; // 0 = Home, 1 = Perfil
 
-  // Lista de las pantallas principales (Pestañas)
+  // Lista de las pantallas principales
   final List<Widget> _screens = [
     const HomeScreen(),
     const ProfileScreen(),
@@ -32,9 +32,9 @@ class _MainWrapperState extends State<MainWrapper> {
             _currentIndex = index; // Actualiza la pantalla
           });
         },
-        selectedItemColor: const Color(0xFF58CC02), // Verde Duolingo
+        selectedItemColor: const Color(0xFF58CC02), 
         unselectedItemColor: Colors.grey,
-        showSelectedLabels: false, // Estilo limpio tipo Duolingo
+        showSelectedLabels: false,  
         showUnselectedLabels: false,
         items: const [
           BottomNavigationBarItem(
