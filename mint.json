@@ -1,0 +1,33 @@
+{
+  "name": "ConMigo",
+  "logo": {
+    "light": "/logo.png",
+    "dark": "/logo.png"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#58CC02",
+    "light": "#8EE04E",
+    "dark": "#46A302"
+  },
+  "navigation": [
+    {
+      "group": "Guía de Inicio",
+      "pages": [
+        "introduccion"
+      ]
+    },
+    {
+      "group": "Ingeniería del Proyecto",
+      "pages": [
+        "arquitectura"
+      ]
+    },
+    {
+      "group": "Despliegue",
+      "pages": [
+        "instalacion"
+      ]
+    }
+  ]
+}
