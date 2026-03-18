@@ -7,7 +7,9 @@
 **ConMigo** es una aplicación móvil diseñada para facilitar el aprendizaje. Inspirada en dinámicas de gamificación, busca aprender con  comunicación de manera interactiva y accesible.
 
 ---
-
+## 📖 Documentación Oficial
+Puedes encontrar la documentación técnica detallada, guías de arquitectura y manuales de instalación en nuestro sitio oficial:
+ **[conmigo.mintlify.app](hhttps://ab-9ea241ca.mintlify.app/docs/introduccion)**
 ---
 
 ---
