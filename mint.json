@@ -14,19 +14,19 @@
     {
       "group": "Guía de Inicio",
       "pages": [
-        "introduccion"
+        "docs/introduccion"
       ]
     },
     {
       "group": "Ingeniería del Proyecto",
       "pages": [
-        "arquitectura"
+        "docs/arquitectura"
       ]
     },
     {
       "group": "Despliegue",
       "pages": [
-        "instalacion"
+        "docs/instalacion"
       ]
     }
   ]
