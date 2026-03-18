@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'core/app_theme.dart';
-import 'presentation/main_wrapper.dart'; //  Importamos el wrapper
+import 'presentation/main_wrapper.dart'; 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'presentation/auth/pantalla_registro.dart';
@@ -18,7 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   
-  //debo recordar que solo debo ejecutarla cuando vaya a poblar lecciones
+  //Solo se ejecuta si se quiere poblar lecciones
   //await PobladorLecciones().subirLeccionDePrueba();
   //await PobladorMasivo().construirCursoCompleto();
 
@@ -31,11 +31,10 @@ class DuolingoCloneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Duolingo Clone',
+      title: 'ConMigo',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.theme,
-      //home: const MainWrapper(), // Arrancamos con el contenedor de pestañas
-      //home: const PantallaRegistro(),
+
       home: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {

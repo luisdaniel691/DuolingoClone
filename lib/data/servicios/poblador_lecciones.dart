@@ -27,11 +27,18 @@ class PobladorLecciones {
         "opciones": ["Perro", "Gato", "Agua"],
         "respuesta_correcta": "Gato"
       },
-      {
+      /*{
         "tipo": "seleccion",
         "pregunta": "The man",
         "opciones": ["La mujer", "El hombre", "El niño"],
         "respuesta_correcta": "El hombre"
+      },*/
+      {
+        "tipo": "voz",
+        "pregunta": "Toca el micrófono y pronuncia:",
+        "oracion_incompleta": "The cat drinks water", // Usamos este campo para mostrar la frase que debe leer
+        "opciones": [], // No hay botones de opciones aquí
+        "respuesta_correcta": "the cat drinks water" // Todo en minúsculas para que sea fácil de comparar
       },
       {
         "tipo": "seleccion",

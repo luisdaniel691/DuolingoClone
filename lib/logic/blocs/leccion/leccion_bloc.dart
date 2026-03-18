@@ -11,16 +11,12 @@ class LeccionBloc extends Bloc<LeccionEvent, LeccionState> {
     on<ComenzarLeccionEvent>((event, emit) async {
       emit(LeccionCargando());
       try {
-        // traemos la lección de la nube
-        final leccion = await _repo.obtenerLeccion(event.cursoId, event.unidadId, event.leccionId);
-        
-        // Intentamos cobrar la energía
-        final tieneEnergia = await _repo.intentarConsumirEnergia(leccion.costoEnergia);
+        //validamos y cobramos la energía
+        // Si no tiene vidas, lanzará un error y saltará directo al catch
+        await _repo.validarYConsumirEnergia();
 
-        if (!tieneEnergia) {
-          emit(LeccionError("¡No tienes suficiente energía!"));
-          return;
-        }
+        //Si pasó el cobro, traemos la lección de la nube
+        final leccion = await _repo.obtenerLeccion(event.cursoId, event.unidadId, event.leccionId);
 
         // Empezamos en el índice 0
         emit(LeccionEnProgreso(
@@ -29,7 +25,12 @@ class LeccionBloc extends Bloc<LeccionEvent, LeccionState> {
           progreso: 0.0
         ));
       } catch (e) {
-        emit(LeccionError("Error al cargar: $e"));
+        // Limpiamos el texto del error para que se vea limpio 
+        String mensaje = e.toString().replaceAll("Exception: ", "");
+        
+        // Emitimos el error. Si el mensaje contiene energía la pantalla 
+        // lo atrapará y sacará al usuario automáticamente al mapa.
+        emit(LeccionError(mensaje));
       }
     });
 
@@ -52,6 +53,8 @@ class LeccionBloc extends Bloc<LeccionEvent, LeccionState> {
           if (esUltima) {
             // FIN DE LA LECCIÓN
             await _repo.otorgarRecompensa(estadoActual.leccion.recompensaXp);
+            await _repo.actualizarRacha();
+            await _repo.evaluarLogrosPostLeccion();
             emit(LeccionCompletada(estadoActual.leccion.recompensaXp));
           } else {
             // SIGUIENTE PREGUNTA
@@ -69,7 +72,7 @@ class LeccionBloc extends Bloc<LeccionEvent, LeccionState> {
           // RESPUESTA INCORRECTA 
           // Solo emitimos error visual pero no avanzamos
            emit(LeccionError("Respuesta incorrecta, intenta de nuevo"));
-           // Regresamos al estado normal después de un microsegundo para que el usuario pueda intentar
+           // Regresamos al estado normal para que el usuario pueda intentar
            emit(estadoActual); 
         }
       }

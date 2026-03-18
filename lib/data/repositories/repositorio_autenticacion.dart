@@ -47,6 +47,7 @@ class RepositorioAutenticacion {
       'ultima_recarga_energia': FieldValue.serverTimestamp(), 
       'curso_actual_id': 'ingles', // ID del curso por defecto
       'lecciones_completadas': [], 
+      'ultima_fecha_leccion': null,
     });
   }
 
